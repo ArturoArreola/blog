@@ -2,6 +2,8 @@ FROM centos/python-36-centos7:latest
 
 USER root
 
+RUN pip install --upgrade pip
+
 COPY . /tmp/src
 
 RUN mv /tmp/src/.s2i/bin /tmp/scripts
@@ -9,8 +11,7 @@ RUN mv /tmp/src/.s2i/bin /tmp/scripts
 RUN rm -rf /tmp/src/.git* && \
     chown -R 1001 /tmp/src && \
     chgrp -R 0 /tmp/src && \
-    chmod -R g+w /tmp/src && \
-    pip install --upgrade pip
+    chmod -R g+w /tmp/src 
 
 USER 1001
 
